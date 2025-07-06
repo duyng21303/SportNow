@@ -11,6 +11,11 @@ const HeroContainer = styled.section`
   align-items: center;
   position: relative;
   overflow: hidden;
+  padding-top: 60px; 
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    align-items: flex-start;          /* không căn giữa theo chiều dọc */
+    overflow: visible;                /* nếu đã cần cho FloatingCard */
+  }
 `;
 
 const BackgroundPattern = styled.div`
@@ -43,10 +48,11 @@ const HeroContent = styled.div`
   align-items: center;
   z-index: 1;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
     text-align: center;
+    padding: 0 16px;        /* padding cạnh cho text */
   }
 `;
 
@@ -65,6 +71,11 @@ const Title = styled.h1`
   margin-bottom: 24px;
   font-weight: 800;
   line-height: 1.1;
+   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    /* nhỏ hơn trên mobile */
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+    margin-bottom: 16px;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -72,6 +83,11 @@ const Subtitle = styled.p`
   margin-bottom: 40px;
   opacity: 0.9;
   line-height: 1.5;
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 1rem;
+    margin-bottom: 24px;
+    line-height: 1.4;
+  }
 `;
 
 const ButtonGroup = styled.div`
@@ -188,6 +204,10 @@ const PhoneMockup = styled(motion.div)`
     pointer-events: none;
     z-index: 50;
   }
+     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+  
+    margin-bottom: 30px;
+  }
 `;
 
 const PhoneScreen = styled.div`
@@ -216,6 +236,9 @@ const FloatingCard = styled(motion.div)`
   padding: 20px;
   box-shadow: ${({ theme }) => theme.shadows.large};
   color: ${({ theme }) => theme.colors.black};
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: none;
+  }
 `;
 
 const slides = [
@@ -288,91 +311,120 @@ const Hero: React.FC = () => {
         <HeroContent>
 
           {/* ————— CHỈ SỬA PHẦN NÀY ————— */}
-          <div className="relative mx-auto max-w-4xl">
-            {/* overlay chỉ che icon và blur background */}
-            <div className="absolute inset-0 bg-white/5 backdrop-blur-md rounded-lg" />
-            {/* đây mới là content thật */}
-            <div className="relative z-10 px-4 py-6 text-center text-white">
-              <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                className="max-w-4xl mx-auto"
-              >
-                <motion.div variants={itemVariants as any} className="mb-8">
-                  <SportAnimation />
-                </motion.div>
+        <div className="relative mx-auto w-full max-w-4xl px-4 sm:px-0">
+  {/* overlay chỉ che icon và blur background */}
+  <div className="absolute inset-0 bg-white/5 backdrop-blur-md rounded-lg" />
 
-                <motion.h1 
-                  variants={itemVariants as any}
-                  className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
-                >
-                  Sẵn sàng vào trận
-                  <br />
-                  <span className="text-yellow-300">Đặt sân trong tích tắc</span>
-                </motion.h1>
+  {/* đây mới là content thật */}
+  <div className="relative z-10 text-center text-white
+                  px-4 py-6
+                  sm:px-6 sm:py-8
+                  md:px-8 md:py-10">
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="mx-auto max-w-full
+                 sm:max-w-2xl
+                 md:max-w-4xl"
+    >
+      {/* Sport Animation */}
+      <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
+        <SportAnimation />
+      </motion.div>
 
-                <motion.p 
-                  variants={itemVariants as any}
-                  className="text-xl md:text-2xl mb-12 opacity-90 max-w-2xl mx-auto"
-                >
-                  Kết nối cộng đồng thể thao, tìm bạn cùng chơi hoàn hảo và đặt sân ngay tức thì. Mọi trận đấu sắp tới của bạn giờ chỉ cách một chạm.
-                </motion.p>
+      {/* Heading */}
+      <motion.h1
+        variants={itemVariants}
+        className="font-bold leading-tight
+                   text-3xl sm:text-5xl md:text-7xl
+                   mb-4 sm:mb-6"
+      >
+        Sẵn sàng vào trận
+        <br />
+        <span className="text-yellow-300">Đặt sân trong tích tắc</span>
+      </motion.h1>
 
-                <motion.div 
-                  variants={itemVariants as any}
-                  className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
-                >
-                  <motion.button
-                    variants={buttonVariants as any}
-                    whileHover="hover"
-                    whileTap="tap"
-                    className="bg-[#5A983B] text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-3 shadow-lg animate-pulse-glow"
-                  >
-                    <Play className="w-6 h-6" />
-                    Bắt đầu ngay
-                  </motion.button>
+      {/* Subtitle */}
+      <motion.p
+        variants={itemVariants}
+        className="opacity-90
+                   text-base sm:text-xl md:text-2xl
+                   mb-6 sm:mb-12
+                   max-w-full sm:max-w-xl md:max-w-2xl
+                   mx-auto"
+      >
+        Kết nối cộng đồng thể thao, tìm bạn cùng chơi hoàn hảo và đặt sân ngay tức thì. 
+        Mọi trận đấu sắp tới của bạn giờ chỉ cách một chạm.
+      </motion.p>
 
-                  <motion.button
-                    variants={buttonVariants as any}
-                    whileHover="hover"
-                    whileTap="tap"
-                    className="bg-white/20 border border-white/30 text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-3"
-                  >
-                    <Smartphone className="w-6 h-6" />
-                    Xem Demo
-                  </motion.button>
-                </motion.div>
+      {/* Primary & Demo Buttons */}
+      <motion.div
+        variants={itemVariants}
+        className="flex flex-col sm:flex-row gap-4
+                   justify-center items-center
+                   mb-6 sm:mb-12"
+      >
+        <motion.button
+          variants={buttonVariants}
+          whileHover="hover"
+          whileTap="tap"
+          className="bg-[#5A983B] text-white
+                     w-full sm:w-auto
+                     px-6 py-3 sm:px-8 sm:py-4
+                     rounded-full font-semibold
+                     text-base sm:text-lg
+                     flex items-center justify-center
+                     gap-2 sm:gap-3
+                     shadow-lg"
+        >
+          <Play className="w-5 h-5 sm:w-6 sm:h-6" />
+          Bắt đầu ngay
+        </motion.button>
 
-                <motion.div 
-                  variants={itemVariants as any}
-                  className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-                >
-                  <motion.div 
-                    whileHover={{ scale: 1.05 }}
-                    className="bg-black rounded-lg p-3 flex items-center gap-3 cursor-pointer"
-                  >
-                    <Download className="w-8 h-8 text-white" />
-                    <div className="text-left">
-                      <div className="text-xs text-gray-300">Download on the</div>
-                      <div className="text-lg font-semibold text-white">App Store</div>
-                    </div>
-                  </motion.div>
+        <motion.button
+          variants={buttonVariants}
+          whileHover="hover"
+          whileTap="tap"
+          className="bg-white/20 border border-white/30 text-white
+                     w-full sm:w-auto
+                     px-6 py-3 sm:px-8 sm:py-4
+                     rounded-full font-semibold
+                     text-base sm:text-lg
+                     flex items-center justify-center
+                     gap-2 sm:gap-3"
+        >
+          <Smartphone className="w-5 h-5 sm:w-6 sm:h-6" />
+          Xem Demo
+        </motion.button>
+      </motion.div>
 
-                  <motion.div 
-                    whileHover={{ scale: 1.05 }}
-                    className="bg-black rounded-lg p-3 flex items-center gap-3 cursor-pointer"
-                  >
-                    <Download className="w-8 h-8 text-white" />
-                    <div className="text-left">
-                      <div className="text-xs text-gray-300">Get it on</div>
-                      <div className="text-lg font-semibold text-white">Google Play</div>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              </motion.div>
-            </div>
+      {/* App Store / Google Play badges */}
+      <motion.div
+        variants={itemVariants}
+        className="flex flex-col sm:flex-row gap-4
+                   justify-center items-center"
+      >
+        <motion.div whileHover={{ scale: 1.05 }} className="bg-black rounded-lg p-3 flex items-center gap-3 cursor-pointer">
+          <Download className="w-8 h-8 text-white" />
+          <div className="text-left">
+            <div className="text-xs text-gray-300">Download on the</div>
+            <div className="text-lg font-semibold text-white">App Store</div>
           </div>
+        </motion.div>
+
+        <motion.div whileHover={{ scale: 1.05 }} className="bg-black rounded-lg p-3 flex items-center gap-3 cursor-pointer">
+          <Download className="w-8 h-8 text-white" />
+          <div className="text-left">
+            <div className="text-xs text-gray-300">Get it on</div>
+            <div className="text-lg font-semibold text-white">Google Play</div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
+  </div>
+</div>
+
           {/* ——————————————————————— */}
 
           <HeroImage>

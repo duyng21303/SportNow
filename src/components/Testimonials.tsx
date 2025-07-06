@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import duyImg    from '../images/duy.png';
+import huongImg  from '../images/huong.png';
+import linhImg   from '../images/linh.png';
+import thinhImg  from '../images/Thinh.png';
+import phuongImg from '../images/phuong.png';
 
 const Testimonials: React.FC = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -16,21 +21,21 @@ const Testimonials: React.FC = () => {
     role: "Người yêu thể thao",
     rating: 5,
     comment: "SportNow đã giúp tôi dễ dàng tìm sân và bạn chơi mới ngay trong khu vực. Giao diện thân thiện, đặt sân chỉ trong vài cú chạm!",
-    image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+    image: duyImg
   },
   {
     name: "Nguyễn Quốc Thịnh",
     role: "Cầu thủ bóng rổ nghiệp dư",
     rating: 5,
     comment: "Nhờ SportNow, tôi đã tìm được đồng đội để tập luyện đều đặn mỗi tuần. Tính năng ghép nhóm rất chính xác và dễ sử dụng.",
-    image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+    image: thinhImg
   },
   {
     name: "Thu Hương",
     role: "Huấn luyện viên tennis",
     rating: 5,
     comment: "Tôi sử dụng SportNow để tổ chức buổi tập cho học viên. Việc đặt sân và quản lý thanh toán thật suôn sẻ, tiết kiệm thời gian.",
-    image: "https://images.pexels.com/photos/3779702/pexels-photo-3779702.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+    image: huongImg
   },
   {
     name: "Nguyễn Bảo Đức",
@@ -44,14 +49,14 @@ const Testimonials: React.FC = () => {
     role: "Fan cầu lông",
     rating: 5,
     comment: "Tôi luôn tìm được sân cầu lông gần nhà và đặt trước dễ dàng. Bạn bè tôi cũng rất thích tính năng nhắc nhở giờ chơi của SportNow.",
-    image: "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+    image: linhImg
   },
   {
     name: "Đinh Thị Bích Phượng",
     role: "Người yêu thích bóng bàn",
     rating: 5,
     comment: "Không chỉ dùng để đặt sân, tôi còn tìm được nhóm chạy bộ và lớp bóng bàn chung. SportNow thực sự là nền tảng kết nối cộng đồng thể thao.",
-    image: "https://images.pexels.com/photos/3778611/pexels-photo-3778611.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+    image: phuongImg
   }
 ];
 
