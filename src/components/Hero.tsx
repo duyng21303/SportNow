@@ -405,20 +405,32 @@ const Hero: React.FC = () => {
         className="flex flex-col sm:flex-row gap-4
                    justify-center items-center"
       >
-        <motion.div href={"/apk/sportnow.apk"} whileHover={{ scale: 1.05 }} className="bg-black rounded-lg p-3 flex items-center gap-3 cursor-pointer">
+        <motion.div  whileHover={{ scale: 1.05 }}>
+        <a
+    href="/sportnow.apk"
+    download
+    className="bg-black rounded-lg p-3 flex items-center gap-3 cursor-pointer block"
+  >
           <Download className="w-8 h-8 text-white" />
           <div className="text-left">
             <div className="text-xs text-gray-300">Download on the</div>
             <div className="text-lg font-semibold text-white">App Store</div>
           </div>
+          </a>
         </motion.div>
 
-        <motion.div href={"/apk/sportnow.apk"} whileHover={{ scale: 1.05 }} className="bg-black rounded-lg p-3 flex items-center gap-3 cursor-pointer">
+        <motion.div whileHover={{ scale: 1.05 }} >
+        <a
+    href="/sportnow.apk"
+    download
+    className="bg-black rounded-lg p-3 flex items-center gap-3 cursor-pointer block"
+  >
           <Download className="w-8 h-8 text-white" />
           <div className="text-left">
             <div className="text-xs text-gray-300">Get it on</div>
             <div className="text-lg font-semibold text-white">Google Play</div>
           </div>
+          </a>
         </motion.div>
       </motion.div>
     </motion.div>

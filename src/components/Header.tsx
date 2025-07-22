@@ -77,9 +77,15 @@ const Header: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-[#5A983B] text-white px-6 py-2 rounded-full hover:bg-[#4E8A32] transition-colors"
+               
               >
+                 <a
+    href="/sportnow.apk"
+    download
+     className="bg-[#5A983B] text-white px-6 py-2 rounded-full hover:bg-[#4E8A32] transition-colors"
+  >
                 Tải ứng dụng
+                </a>
               </motion.button>
             </div>
 
